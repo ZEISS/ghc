@@ -7,9 +7,6 @@ GO_TEST 				?= $(GO_RUN_TOOLS) gotest.tools/gotestsum --format pkgname
 GO_RELEASER 		?= $(GO_RUN_TOOLS) github.com/goreleaser/goreleaser
 GO_MOD					?= $(shell ${GO} list -m)
 
-# Air to live reload
-AIR							?= air
-
 .PHONY: release
 release: ## Release the project.
 	$(GO_RELEASER) release --clean
@@ -29,10 +26,6 @@ mocks: ## Generate mocks.
 .PHONY: fmt
 fmt: ## Run go fmt against code.
 	$(GO_RUN_TOOLS) mvdan.cc/gofumpt -w .
-
-.PHONY: start
-start: ## Run air live reload. Create a .air.toml file to configure.
-	$(AIR)
 
 .PHONY: vet
 vet: ## Run go vet against code.
