@@ -34,11 +34,11 @@ var RootCmd = &cobra.Command{
 	Use:   "hc",
 	Short: "hc is a tool to manage git hooks",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		return runRoot(cmd.Context(), args...)
+		return runRoot(cmd.Context())
 	},
 }
 
-func runRoot(ctx context.Context, args ...string) error {
+func runRoot(ctx context.Context) error {
 	cwd, err := config.Cwd()
 	if err != nil {
 		return err

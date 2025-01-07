@@ -31,6 +31,7 @@ func Path(ctx context.Context) (string, error) {
 func Install(name, path, cfg string) error {
 	tpl := fmt.Sprintf(hookTemplate, cfg, name)
 
+	// nolint:gosec
 	err := os.WriteFile(filepath.Join(path, name), []byte(tpl), 0o755)
 	if err != nil {
 		return err

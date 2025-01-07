@@ -3,4 +3,5 @@ name: gc
 description: This is a tool to manage git hooks
 hooks:
   pre-commit:
-    - go test ./...
+    - make test
+    - make lint
