@@ -4,9 +4,11 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
+	"strings"
 
-	"github.com/go-git/go-git/v5"
+	"github.com/zeiss/pkg/conv"
 )
 
 var hookTemplate = "#!/usr/bin/env -S sh -c 'ghc -c %s -r %s'"
@@ -18,13 +20,13 @@ func Path(ctx context.Context) (string, error) {
 		return "", err
 	}
 
-	// check if the current directory is a git repository
-	_, err = git.PlainOpen(filepath.Join(cwd, ".git"))
+	cmd := exec.CommandContext(ctx, "git", "config", "core.hooksPath")
+	out, err := cmd.Output()
 	if err != nil {
 		return "", err
 	}
 
-	return filepath.Join(cwd, ".git", "hooks"), nil
+	return filepath.Clean(filepath.Join(cwd, strings.TrimSuffix(conv.String(out), "\n"))), nil
 }
 
 // Install installs the hook
@@ -32,7 +34,7 @@ func Install(name, path, cfg string) error {
 	tpl := fmt.Sprintf(hookTemplate, cfg, name)
 
 	// nolint:gosec
-	err := os.WriteFile(filepath.Join(path, name), []byte(tpl), 0o755)
+	err := os.WriteFile(filepath.Clean(filepath.Join(path, name)), []byte(tpl), 0o755)
 	if err != nil {
 		return err
 	}
