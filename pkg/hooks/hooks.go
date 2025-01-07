@@ -9,7 +9,7 @@ import (
 	"github.com/go-git/go-git/v5"
 )
 
-var hookTemplate = "#!/usr/bin/env -S sh -c 'hc -c %s %s'"
+var hookTemplate = "#!/usr/bin/env -S sh -c 'hc -c %s -r %s'"
 
 // Path returns the path of the hook
 func Path(ctx context.Context) (string, error) {
