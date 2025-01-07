@@ -20,15 +20,7 @@ var InstallCmd = &cobra.Command{
 }
 
 func runInstall(ctx context.Context) error {
-	cwd, err := config.Cwd()
-	if err != nil {
-		return err
-	}
-
-	cfg := config.File
-	if !filepath.IsAbs(config.File) {
-		cfg = filepath.Clean(filepath.Join(cwd, config.File))
-	}
+	cfg := filepath.Clean(config.File)
 
 	s, err := os.ReadFile(cfg)
 	if err != nil {

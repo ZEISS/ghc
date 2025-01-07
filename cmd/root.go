@@ -31,23 +31,16 @@ func init() {
 }
 
 var RootCmd = &cobra.Command{
-	Use:   "hc",
-	Short: "hc is a tool to manage git hooks",
+	Use:   "ghc",
+	Short: "ghc is a teeny tiny tool to manage git hooks",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return runRoot(cmd.Context())
 	},
 }
 
 func runRoot(ctx context.Context) error {
-	cwd, err := config.Cwd()
-	if err != nil {
-		return err
-	}
-
-	cfg := config.File
-	if !filepath.IsAbs(config.File) {
-		cfg = filepath.Clean(filepath.Join(cwd, config.File))
-	}
+	cfg := filepath.Clean(config.File)
+	cwd := filepath.Dir(cfg)
 
 	s, err := os.ReadFile(cfg)
 	if err != nil {
@@ -68,6 +61,8 @@ func runRoot(ctx context.Context) error {
 		cc := strings.Split(c, " ")
 
 		c := exec.CommandContext(ctx, cc[0], cc[1:]...)
+		c.Dir = cwd
+
 		c.Stdin = os.Stdin
 		c.Stdout = os.Stdout
 		c.Stderr = os.Stderr

@@ -1,5 +1,19 @@
 # ghc - The Git Hooks Captain
 
+`ghc` is a teeny tiny tool to manage [git](https://git-scm.com) hooks via a configuration file.
+
+### Homebrew
+
+```bash
+brew install zeiss/ghc-tap/ghc
+```
+
+### Go
+
+```bash
+go install github.com/zeiss/ghc@latest
+```
+
 ## Specification
 
 This is an example configuration file.
