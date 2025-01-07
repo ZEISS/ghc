@@ -1,4 +1,4 @@
-# ghc - The Git Hooks Captain
+# 🚣 ghc - The git hook captain tool
 
 `ghc` is a teeny tiny tool to manage [git](https://git-scm.com) hooks via a configuration file.
 
