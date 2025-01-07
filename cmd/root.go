@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -14,6 +15,16 @@ import (
 )
 
 var config = cfg.Default()
+
+const (
+	versionFmt = "%s (%s %s)"
+)
+
+var (
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
+)
 
 func init() {
 	RootCmd.AddCommand(InitCmd)
@@ -36,6 +47,7 @@ var RootCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return runRoot(cmd.Context())
 	},
+	Version: fmt.Sprintf(versionFmt, version, commit, date),
 }
 
 func runRoot(ctx context.Context) error {
