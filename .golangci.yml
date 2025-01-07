@@ -180,6 +180,11 @@ issues:
         - gosec
         - gas
 
+    - text: "G304:"
+      linters:
+        - gosec
+        - gas
+
     # This is an 'errors unhandled' warning that duplicates errcheck.
     - text: "G104:"
       linters:

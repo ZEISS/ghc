@@ -25,7 +25,10 @@ func runInstall(ctx context.Context) error {
 		return err
 	}
 
-	cfg := filepath.Clean(filepath.Join(cwd, config.File))
+	cfg := config.File
+	if !filepath.IsAbs(config.File) {
+		cfg = filepath.Clean(filepath.Join(cwd, config.File))
+	}
 
 	s, err := os.ReadFile(cfg)
 	if err != nil {
