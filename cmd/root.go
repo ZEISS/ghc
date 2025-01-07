@@ -62,10 +62,10 @@ func runRoot(ctx context.Context) error {
 
 		c := exec.CommandContext(ctx, cc[0], cc[1:]...)
 		c.Dir = cwd
-
 		c.Stdin = os.Stdin
 		c.Stdout = os.Stdout
 		c.Stderr = os.Stderr
+
 		if err := c.Run(); err != nil {
 			return err
 		}

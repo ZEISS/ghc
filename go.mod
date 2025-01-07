@@ -2,8 +2,6 @@ module github.com/zeiss/ghc
 
 go 1.23.0
 
-toolchain go1.23.4
-
 require (
 	github.com/go-playground/validator/v10 v10.23.0
 	github.com/pkg/errors v0.9.1
