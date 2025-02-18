@@ -21,7 +21,7 @@ func Path(ctx context.Context) (string, error) {
 		return "", err
 	}
 
-	return strings.TrimSuffix(conv.String(out), "\n"), nil
+	return filepath.Clean(filepath.Join(strings.TrimSuffix(conv.String(out), "\n"), "hooks")), nil
 }
 
 // Install installs the hook
