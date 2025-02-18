@@ -1,6 +1,6 @@
 module github.com/zeiss/ghc
 
-go 1.23.0
+go 1.24
 
 require (
 	github.com/go-playground/validator/v10 v10.25.0
