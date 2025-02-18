@@ -1,8 +1,0 @@
-version: 1
-
-name: example
-description: An example project
-
-hooks:
-  pre-commit:
-    - go run ./examples/pre-commit
