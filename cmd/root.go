@@ -30,6 +30,7 @@ func init() {
 	RootCmd.AddCommand(InitCmd)
 	RootCmd.AddCommand(ValidateCmd)
 	RootCmd.AddCommand(InstallCmd)
+	RootCmd.AddCommand(UninstallCmd)
 
 	RootCmd.Flags().StringVarP(&config.Root.Run, "run", "r", config.Root.Run, "run a specific hook")
 

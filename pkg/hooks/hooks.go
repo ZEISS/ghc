@@ -36,3 +36,8 @@ func Install(name, path, cfg string) error {
 
 	return nil
 }
+
+// Uninstall uninstalls the hook
+func Uninstall(name, path string) error {
+	return os.Remove(filepath.Clean(filepath.Join(path, name)))
+}
